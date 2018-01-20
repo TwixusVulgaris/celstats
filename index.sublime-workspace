@@ -1,0 +1,530 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"re",
+				"record"
+			],
+			[
+				"recor",
+				"recordedCall"
+			],
+			[
+				"ca",
+				"callsArr"
+			],
+			[
+				"reco",
+				"recordedCall"
+			],
+			[
+				"srt_r",
+				"str_replace"
+			],
+			[
+				"exp",
+				"explode"
+			],
+			[
+				"appArr",
+				"appDataArr"
+			],
+			[
+				"stat",
+				"statsDataToWrite"
+			],
+			[
+				"uni",
+				"uniqueid"
+			],
+			[
+				"arr",
+				"array_shift"
+			],
+			[
+				"array_u",
+				"array_unique"
+			],
+			[
+				"tran",
+				"transferArr"
+			],
+			[
+				"cou",
+				"countTansfers"
+			],
+			[
+				"B",
+				"BRIDGE_ENTER"
+			],
+			[
+				"unpr",
+				"unpricedArr"
+			],
+			[
+				"va",
+				"var_dump"
+			],
+			[
+				"pri",
+				"priceArr"
+			],
+			[
+				"for",
+				"foreach\tforeach …"
+			],
+			[
+				"un",
+				"unpricedArr"
+			],
+			[
+				"ke",
+				"key"
+			],
+			[
+				"line",
+				"line"
+			],
+			[
+				"str_re",
+				"str_replace"
+			],
+			[
+				"fo",
+				"foreach\tforeach …"
+			],
+			[
+				"H",
+				"Hangup"
+			],
+			[
+				"q",
+				"query"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"MTT",
+				"MTT"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "config.php",
+			"settings":
+			{
+				"buffer_size": 405,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "db_processor_new.php",
+			"settings":
+			{
+				"buffer_size": 7528,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<!DOCTYPE html>\n<html>\n<head>\n    <meta http-equiv=\"Content-Type\" content=\"application/xhtml+xml; charset=UTF-8\">\n    <title>Статистика звонков</title>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"style.css\">\n    <link rel=\"shortcut icon\" href=\"icons/favicon.ico\" />\n</head>\n<body>\n</body>\n<FORM name=\"filter\" action=\"?\" method=post>\n    <fieldset>\n        <legend class=\"title\">Просмотр записей о совершенных звонках</legend>\n        <table border=\"0\" width=\"100%\">\n            <tr>\n                <th></th>\n                <th>Сортировать по</th>\n                <th>Условия поиска</th>\n            </tr>\n            <tr>\n                <td rowspan=\"8\"><img src=\"images/logo.png\" align=\"middle\"></td>\n                <td align=\"right\">\n                    <span>Дата и время звонка</span>\n                    <input type=\"radio\" name=\"sort_field\" value=\"date\" <?php if (empty($_REQUEST['sort_field']) || $_REQUEST['sort_field'] == \"date\") {echo 'checked=\"checked\"';}?>>\n                </td>\n                <td>\n                    <span>От:\n                    <input type=\"date\" name=\"startdate\" value=\"<?=$_POST[\"startdate\"] ?>\">\n                    <input type=\"time\" name=\"starttime\" value=\"<?=$_POST['starttime'] ?>\">\n                    До:\n                    <input type=\"date\" name=\"enddate\" value=\"<?=$_POST['enddate'] ?>\">\n                    <input type=\"time\" name=\"endtime\" value=\"<?=$_POST['endtime'] ?>\"> Если не задана дата - используется сегодняшняя, время - от: 00:00 до: 23:59</span>\n                </td>\n            </tr>\n            <tr>\n                <td align=\"right\">\n                    <span>Номер звонившего</span>\n                    <input type=\"radio\" name=\"sort_field\" value=\"cid\" <?php if (isset($_REQUEST['sort_field']) && $_REQUEST['sort_field'] == \"cid\") {echo 'checked=\"checked\"';}?>>\n                </td>\n                <td>\n                    <input type=\"text\" name=\"callerid\"  value=\"<?=$_POST['callerid']?>\">\n                    <label for=\"cbegins\">Начинается на</label>\n                    <input type=\"radio\" id=\"cbegins\" name=\"cid_cond\" value=\"begins\" <?php if (empty($_REQUEST['cid_cond']) || $_REQUEST['cid_cond'] == \"begins\") {echo 'checked=\"checked\"';}?>>\n                    <label for=\"cends\">Заканчивается на</label>\n                    <input type=\"radio\" id=\"cends\" name=\"cid_cond\" value=\"ends\" <?php if (isset($_REQUEST['cid_cond']) && $_REQUEST['cid_cond'] == \"ends\") {echo 'checked=\"checked\"';}?>>\n                    <label for=\"ccontains\">Содержит</label>\n                    <input type=\"radio\" id=\"ccontains\" name=\"cid_cond\" value=\"contains\" <?php if (isset($_REQUEST['cid_cond']) && $_REQUEST['cid_cond'] == \"contains\") {echo 'checked=\"checked\"';}?>>\n                    <label for=\"cequal\">Совпадает</label>\n                    <input type=\"radio\" id=\"cequal\" name=\"cid_cond\" value=\"equal\" <?php if (isset($_REQUEST['cid_cond']) && $_REQUEST['cid_cond'] == \"equal\") {echo 'checked=\"checked\"';}?>>\n                </td>\n            </tr>\n            <tr>\n                <td align=\"right\">\n                    <span>Набранный номер</span>\n                    <input type=\"radio\" name=\"sort_field\" value=\"exten\" <?php if (isset($_REQUEST['sort_field']) && $_REQUEST['sort_field'] == \"exten\") {echo 'checked=\"checked\"';}?>>\n                </td>\n                <td>\n                    <input type=\"text\" name=\"exten\"  value=\"<?=$_POST['exten']?>\">\n                    <label for=\"ebegins\">Начинается на</label>\n                    <input type=\"radio\" id=\"ebegins\" name=\"ext_cond\" value=\"begins\" <?php if (empty($_REQUEST['ext_cond']) || $_REQUEST['ext_cond'] == \"begins\") {echo 'checked=\"checked\"';}?>>\n                    <label for=\"eends\">Заканчивается на</label>\n                    <input type=\"radio\" id=\"eends\" name=\"ext_cond\" value=\"ends\" <?php if (isset($_REQUEST['ext_cond']) && $_REQUEST['ext_cond'] == \"ends\") {echo 'checked=\"checked\"';}?>>\n                    <label for=\"econtains\">Содержит</label>\n                    <input type=\"radio\" id=\"econtains\" name=\"ext_cond\" value=\"contains\" <?php if (isset($_REQUEST['ext_cond']) && $_REQUEST['ext_cond'] == \"contains\") {echo 'checked=\"checked\"';}?>>\n                    <label for=\"eequal\">Совпадает</label>\n                    <input type=\"radio\" id=\"eequal\" name=\"ext_cond\" value=\"equal\" <?php if (isset($_REQUEST['ext_cond']) && $_REQUEST['ext_cond'] == \"equal\") {echo 'checked=\"checked\"';}?>>\n                </td>\n            </tr>\n<!--            <tr>\n                <td align=\"right\">\n                    <span>Набрано в голосовом меню</span>\n                    <input type=\"radio\" name=\"sort_field\" value=\"ivrd\" <?php if (isset($_REQUEST['sort_field']) && $_REQUEST['sort_field'] == \"ivrd\") {echo 'checked=\"checked\"';}?>>\n<!--TODO добавить возможность фильтровать по внутреннему номеру. Рабочая версия - список набиравшихся брать из базы и пихать в\n<select name = \"ivrdialed\">-->\n<!--                </td>\n                <td>\n                    <select name = \"ivrdialed\">\n                        <option <?php if (empty($_REQUEST['ivrdialed'])) {echo 'selected=\"selected\"';}?> value = \"\">Не важно</option>\n                        <option <?php if (isset($_REQUEST['ivrdialed']) && $_REQUEST['ivrdialed'] == 1) {echo 'selected=\"selected\"';}?> value = \"1\">1</option>\n                        <option <?php if (isset($_REQUEST['ivrdialed']) && $_REQUEST['ivrdialed'] == 2) {echo 'selected=\"selected\"';}?> value = \"2\">2</option>\n                        <option <?php if (isset($_REQUEST['ivrdialed']) && $_REQUEST['ivrdialed'] == 3) {echo 'selected=\"selected\"';}?> value = \"3\">3</option>\n                        <option <?php if (isset($_REQUEST['ivrdialed']) && $_REQUEST['ivrdialed'] == \"t\") {echo 'selected=\"selected\"';}?> value = \"t\">Таймаут</option>\n                        <option <?php if (isset($_REQUEST['ivrdialed']) && $_REQUEST['ivrdialed'] == \"internal\") {echo 'selected=\"selected\"';}?> value = \"internal\">Внутренний номер</option>\n                    </select>\n                </td>\n            </tr>-->\n            <tr>\n                <td align=\"right\">\n                    <span>Ответил</span>\n                    <input type=\"radio\" name=\"sort_field\" value=\"answered\" <?php if (isset($_REQUEST['sort_field']) && $_REQUEST['sort_field'] == \"answered\") {echo 'checked=\"checked\"';}?>>\n                </td>\n                <td>\n                    <input type=\"text\" name=\"answered\"  value=\"<?=$_POST['answered']?>\">\n                    <label for=\"abegins\">Начинается на</label>\n                    <input type=\"radio\" id=\"abegins\" name=\"answ_cond\" value=\"begins\" <?php if (empty($_REQUEST['answ_cond']) || $_REQUEST['answ_cond'] == \"begins\") {echo 'checked=\"checked\"';}?>>\n                    <label for=\"aends\">Заканчивается на</label>\n                    <input type=\"radio\" id=\"aends\" name=\"answ_cond\" value=\"ends\" <?php if (isset($_REQUEST['answ_cond']) && $_REQUEST['answ_cond'] == \"ends\") {echo 'checked=\"checked\"';}?>>\n                    <label for=\"acontains\">Содержит</label>\n                    <input type=\"radio\" id=\"acontains\" name=\"answ_cond\" value=\"contains\" <?php if (isset($_REQUEST['answ_cond']) && $_REQUEST['answ_cond'] == \"contains\") {echo 'checked=\"checked\"';}?>>\n                    <label for=\"aequal\">Совпадает</label>\n                    <input type=\"radio\" id=\"aequal\" name=\"answ_cond\" value=\"equal\" <?php if (isset($_REQUEST['answ_cond']) && $_REQUEST['answ_cond'] == \"equal\") {echo 'checked=\"checked\"';}?>>\n                </td>\n            </tr>\n            <tr>\n                <td align=\"right\">\n                    <span>Направление звонка</span>\n                    <input type=\"radio\" name=\"sort_field\" value=\"dir\" <?php if (isset($_REQUEST['sort_field']) && $_REQUEST['sort_field'] == \"dir\") {echo 'checked=\"checked\"';}?>>\n                </td>\n                <td><span>\n                    <select name = \"direction\">\n                        <option <?php if (empty($_REQUEST['direction'])) {echo 'selected=\"selected\"';}?> value = \"\">Любое</option>\n                        <option <?php if (isset($_REQUEST['direction']) && $_REQUEST['direction'] == 1) {echo 'selected=\"selected\"';}?> value = \"1\">Входящие</option>\n                        <option <?php if (isset($_REQUEST['direction']) && $_REQUEST['direction'] == 2) {echo 'selected=\"selected\"';}?> value = \"2\">Исходящие</option>\n                        <option <?php if (isset($_REQUEST['direction']) && $_REQUEST['direction'] == 3) {echo 'selected=\"selected\"';}?> value = \"3\">Внутренние</option>\n                    </select>\n                       Статус звонка:\n                    <select name = \"status\">\n                        <option <?php if (empty($_REQUEST['status'])) {echo 'selected=\"selected\"';}?> value = \"\">Любой</option>\n                        <option <?php if (isset($_REQUEST['status']) && $_REQUEST['status'] == 1) {echo 'selected=\"selected\"';}?> value = \"1\">Отвеченный</option>\n                        <option <?php if (isset($_REQUEST['status']) && $_REQUEST['status'] == 2) {echo 'selected=\"selected\"';}?> value = \"2\">Неотвеченный</option>\n                    </select></span>\n                </td>\n            </tr>\n            <tr>\n                <td align=\"center\">\n                    <input type=\"radio\" id=\"sort_asc\" name=\"sort_type\" value=\"asc\" <?php if (empty($_REQUEST['sort_type']) || $_REQUEST['sort_type'] == \"asc\") {echo 'checked=\"checked\"';}?>>\n                    <label for=\"sort_asc\">По возрастанию</label>\n                    <input type=\"radio\" id=\"sort_desc\" name=\"sort_type\" value=\"desc\" <?php if (isset($_REQUEST['sort_type']) && $_REQUEST['sort_type'] == \"desc\") {echo 'checked=\"checked\"';}?>>\n                    <label for=\"sort_desc\">По убыванию</label>\n                </td>\n                <td>\n                    <span>Выбрать звонков: <input type=\"text\" name=\"limit\" <?php if (empty($_REQUEST['limit'])) {echo 'value=\"100\"';} else {echo \"value=\\\"{$_REQUEST['limit']}\\\"\";}?></span>\n                    <span>Сформировать CSV <input type=\"checkbox\" name=\"need_csv\"></span>\n                </td>\n            </tr>\n            <tr>\n                <td></td>\n                <td>\n                    <input type=\"submit\" name=\"filter\" value=\"Искать\">\n                </td>\n            </tr>\n        </table>\n    </fieldset>\n</FORM>\n",
+			"file": "form.php",
+			"file_size": 10945,
+			"file_write_time": 131554832440000000,
+			"settings":
+			{
+				"buffer_size": 10340,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "index.php",
+			"settings":
+			{
+				"buffer_size": 496,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "record_correction.php",
+			"settings":
+			{
+				"buffer_size": 1049,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "functions.php",
+			"settings":
+			{
+				"buffer_size": 1624,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 184.0,
+		"last_filter": "Package Control: in",
+		"selected_items":
+		[
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 413.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/twix/Documents/Ariel/Projects/celstats"
+	],
+	"file_history":
+	[
+		"/home/twix/Documents/Ariel/Projects/celstats/db_processor_new.php",
+		"/home/twix/Documents/Ariel/Projects/celstats/provider.php",
+		"/home/twix/Documents/Ariel/Projects/celstats/prices.php",
+		"/home/twix/Documents/Ariel/extensions_new.conf",
+		"/home/twix/Documents/Ariel/check_registrations.php",
+		"/home/twix/Documents/Ariel/calldirtest/chooseprovider.php",
+		"/home/twix/Projects/lidl_parser/worker.cpp"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"answered",
+			"visi",
+			"vi",
+			"pri",
+			");\n",
+			"[]",
+			"check_",
+			"();\n",
+			"$price",
+			"price"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "config.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 405,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "db_processor_new.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7528,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1174.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "form.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10340,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								9698,
+								9698
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1825.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "index.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 496,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 256.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "record_correction.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1049,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								702,
+								702
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "functions.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1624,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "index.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 241.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

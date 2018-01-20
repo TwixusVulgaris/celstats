@@ -1,0 +1,23 @@
+td {
+    padding-left: 7px;
+    padding-right: 3px;
+    padding-top: 3px;
+}
+td.statistic_all {
+    padding-right: 12px;
+    background: #bcf9ff;
+}
+td.statistic_answ {
+    padding-right: 12px;
+    background: #bcffd0;
+}
+td.statistic_noansw {
+    padding-right: 12px;
+    background: #ffcabc;
+}
+
+th {
+    background-color : #5ebeff;
+    border-color : #000;
+    border-width : 2px;
+}
